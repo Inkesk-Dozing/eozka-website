@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOCK Architecture</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Syne:wght@400;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --brand: #A855F7;
+            --brand-glow: rgba(168, 85, 247, 0.2);
+            --bg: #09090B;
+            --text: #F4F4F5;
+            --text-dim: #71717A;
+            --ff-display: 'Cormorant Garamond', Georgia, serif;
+            --ff-ui: 'Syne', sans-serif;
+            --ff-mono: 'DM Mono', monospace;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--ff-ui);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100svh;
+            text-align: center;
+        }
+
+        h1 {
+            font-family: var(--ff-display);
+            font-size: clamp(60px, 10vw, 120px);
+            font-weight: 300;
+            color: #fff;
+            margin-bottom: 12px;
+        }
+
+        p {
+            color: var(--text-dim);
+            font-family: var(--ff-mono);
+            letter-spacing: 0.1em;
+            margin-bottom: 40px;
+        }
+
+        a {
+            font-family: var(--ff-mono);
+            font-size: 11px;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            color: #FFFFFF;
+            background: var(--brand);
+            border: none;
+            padding: 14px 32px;
+            border-radius: 3px;
+            text-decoration: none;
+            transition: opacity .3s, transform .3s;
+        }
+
+        a:hover {
+            opacity: 0.8;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+
+<body>
+    <h1>MOCK</h1>
+    <p>Awaiting structural definition.</p>
+    <a href="../index.html">← Return to MOCE</a>
+</body>
+
+</html>

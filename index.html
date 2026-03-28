@@ -1218,8 +1218,67 @@
             }
         }
 
+        /* ─── Scroll Progress Bar ──────────────────────────────────────────────────── */
+        #scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--brand), #EC4899);
+            z-index: 10000;
+            box-shadow: 0 1px 12px var(--brand-glow);
+            pointer-events: none;
+            transition: width 0.05s linear;
+        }
+
+        /* ─── Side Stack Scrollspy ─────────────────────────────────────────────────── */
+        #scroll-stack {
+            position: fixed;
+            right: 48px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            z-index: 9999;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+        }
+
+        #scroll-stack.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .stack-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--border-hi);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: block;
+        }
+
+        .stack-dot:hover {
+            transform: scale(2);
+            background: var(--brand);
+        }
+
+        .stack-dot.active {
+            height: 24px;
+            border-radius: 3px;
+            background: var(--brand);
+            box-shadow: 0 0 12px var(--brand-glow);
+        }
+
         /* ─── Responsive ───────────────────────────────────────────────────────────── */
         @media (max-width: 1024px) {
+
+            #scroll-stack {
+                display: none !important;
+            }
 
             #cursor,
             #cursor-ring {
@@ -1309,6 +1368,12 @@
 </head>
 
 <body>
+
+    <!-- Scroll Progress Bar -->
+    <div id="scroll-progress"></div>
+
+    <!-- Side Stack Scrollspy -->
+    <div id="scroll-stack"></div>
 
     <!-- Custom cursor -->
     <div id="cursor"></div>
@@ -1875,6 +1940,60 @@
     </footer>
 
     <script>
+        /* ─── Side Stack Scrollspy JS ────────────────────────────────────────────── */
+        const scrollStack = document.getElementById('scroll-stack');
+        const sections = document.querySelectorAll('section, #hero');
+        let scrollTimeout;
+
+        // Auto-generate dots
+        sections.forEach(sec => {
+            if (!sec.id) return;
+            const dot = document.createElement('a');
+            dot.href = '#' + sec.id;
+            dot.className = 'stack-dot';
+            dot.setAttribute('aria-label', sec.id);
+            if (scrollStack) scrollStack.appendChild(dot);
+        });
+
+        const stackDots = document.querySelectorAll('.stack-dot');
+
+        function updateScrollSpy() {
+            if (scrollStack) {
+                scrollStack.classList.add('visible');
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(() => {
+                    scrollStack.classList.remove('visible');
+                }, 1500);
+            }
+
+            let current = '';
+            sections.forEach(sec => {
+                const sectionTop = sec.offsetTop;
+                if (window.scrollY >= sectionTop - window.innerHeight / 3) {
+                    current = sec.id;
+                }
+            });
+
+            stackDots.forEach(dot => {
+                dot.classList.remove('active');
+                if (dot.getAttribute('href') === `#${current}`) {
+                    dot.classList.add('active');
+                }
+            });
+        }
+        window.addEventListener('scroll', updateScrollSpy);
+        window.addEventListener('load', updateScrollSpy);
+
+        /* ─── Scroll Progress Bar JS ─────────────────────────────────────────────── */
+        const scrollProgress = document.getElementById('scroll-progress');
+        window.addEventListener('scroll', () => {
+            if (scrollProgress) {
+                const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrollPercent = (scrollTop / scrollHeight) * 100;
+                scrollProgress.style.width = scrollPercent + '%';
+            }
+        });
         /* ─── Custom cursor ──────────────────────────────────────────────────────── */
         const cursor = document.getElementById('cursor');
         const cursorRing = document.getElementById('cursor-ring');

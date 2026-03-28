@@ -25,34 +25,49 @@
         }
 
         :root {
-            --brand: #4F46E5;
-            --brand-dim: #312E81;
-            --brand-glow: rgba(79, 70, 229, .18);
-            --bg: #08080F;
-            --bg2: #0D0D1A;
-            --bg3: #111124;
-            --text: #E8E8F2;
-            --text-muted: #5A5A7A;
-            --text-dim: #8888A8;
-            --border: rgba(79, 70, 229, .15);
-            --border-hi: rgba(79, 70, 229, .4);
+            --brand: #A855F7;
+            /* Neon Purple */
+            --brand-dim: #3B0764;
+            --brand-glow: rgba(168, 85, 247, 0.2);
+            --bg: #09090B;
+            /* Ultra Dark Zinc */
+            --bg2: #18181B;
+            /* Dark Zinc */
+            --bg3: #27272A;
+            --text: #F4F4F5;
+            --text-muted: #A1A1AA;
+            --text-dim: #71717A;
+            --border: rgba(168, 85, 247, 0.2);
+            --border-hi: rgba(168, 85, 247, 0.4);
+            --text-faint: rgba(244, 244, 245, 0.1);
+            --brand-faint: rgba(168, 85, 247, 0.1);
             --ff-display: 'Cormorant Garamond', Georgia, serif;
             --ff-ui: 'Syne', sans-serif;
             --ff-mono: 'DM Mono', monospace;
         }
 
         body.light-theme {
-            --brand: #4338CA;
-            --brand-dim: #C7D2FE;
-            --brand-glow: rgba(67, 56, 202, .1);
-            --bg: #FAFAFA;
-            --bg2: #F4F4F5;
-            --bg3: #E4E4E7;
-            --text: #18181B;
-            --text-muted: #A1A1AA;
-            --text-dim: #52525B;
-            --border: rgba(67, 56, 202, .15);
-            --border-hi: rgba(67, 56, 202, .4);
+            --brand: #EC4899;
+            /* Vibrant Pink */
+            --brand-dim: #F59E0B;
+            /* Amber */
+            --brand-glow: rgba(236, 72, 153, 0.15);
+            --bg: #FEFCE8;
+            /* Soft Yellow-Cream */
+            --bg2: #FDF4FF;
+            /* Soft Fuchsia */
+            --bg3: #ECFDF5;
+            /* Soft Emerald */
+            --text: #4A044E;
+            /* Deep Plum */
+            --text-muted: #9D174D;
+            /* Deep Rose */
+            --text-dim: #065F46;
+            /* Deep Emerald */
+            --border: rgba(245, 158, 11, 0.25);
+            --border-hi: rgba(236, 72, 153, 0.45);
+            --text-faint: rgba(74, 4, 78, 0.35);
+            --brand-faint: rgba(245, 158, 11, 0.15);
         }
 
         html {
@@ -73,28 +88,34 @@
         /* ─── Custom Cursor ────────────────────────────────────────────────────────── */
         #cursor {
             position: fixed;
+            top: 0;
+            left: 0;
             width: 8px;
             height: 8px;
             background: #FFF;
             border-radius: 50%;
             pointer-events: none;
             z-index: 9999;
-            transform: translate(-50%, -50%);
-            transition: transform .1s, width .3s, height .3s, background .3s;
+            transform: translate3d(-50%, -50%, 0);
+            transition: width .3s, height .3s, background .3s;
             mix-blend-mode: difference;
+            will-change: transform;
         }
 
         #cursor-ring {
             position: fixed;
+            top: 0;
+            left: 0;
             width: 36px;
             height: 36px;
             border: 1px solid #FFF;
             border-radius: 50%;
             pointer-events: none;
             z-index: 9998;
-            transform: translate(-50%, -50%);
-            transition: transform .12s ease-out, width .3s, height .3s, opacity .3s, border-color .3s;
+            transform: translate3d(-50%, -50%, 0);
+            transition: width .3s, height .3s, opacity .3s, border-color .3s;
             mix-blend-mode: difference;
+            will-change: transform;
         }
 
         body:hover #cursor {
@@ -145,7 +166,7 @@
         }
 
         body.light-theme nav {
-            background: linear-gradient(to bottom, rgba(250, 250, 250, .7) 0%, transparent 100%);
+            background: linear-gradient(to bottom, rgba(254, 252, 232, .85) 0%, transparent 100%);
         }
 
         .nav-actions {
@@ -171,7 +192,7 @@
         }
 
         body.light-theme .mobile-menu-overlay {
-            background: rgba(250, 250, 250, 0.95);
+            background: rgba(254, 252, 232, 0.98);
         }
 
         .mobile-menu-overlay.active {
@@ -374,7 +395,7 @@
 
         .hero-title em {
             font-style: italic;
-            color: rgba(232, 232, 242, .5);
+            color: var(--text-faint);
         }
 
         .hero-sub {
@@ -402,7 +423,7 @@
             font-size: 11px;
             letter-spacing: .2em;
             text-transform: uppercase;
-            color: var(--text);
+            color: #FFFFFF;
             background: var(--brand);
             border: none;
             padding: 14px 32px;
@@ -451,7 +472,7 @@
         .scroll-line {
             width: 1px;
             height: 60px;
-            background: linear-gradient(to bottom, var(--brand), transparent);
+            background: linear-gradient(to bottom, #EC4899, #38BDF8, transparent);
             margin: 0 auto;
             animation: scrollPulse 2.5s ease-in-out infinite;
         }
@@ -493,7 +514,7 @@
             font-size: 180px;
             font-weight: 300;
             line-height: 1;
-            color: rgba(79, 70, 229, .06);
+            color: var(--brand-faint);
             position: absolute;
             top: -40px;
             left: -20px;
@@ -704,35 +725,74 @@
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 1px;
-            background: var(--border);
+            gap: 24px;
+            background: transparent;
+        }
+
+        .project-card,
+        .domain-card,
+        .wiki-card {
+            background: rgba(255, 255, 255, 0.015);
+            position: relative;
+            overflow: hidden;
+            transition: background .4s, transform .4s, border-color .4s;
+            cursor: none;
             border: 1px solid var(--border);
+            border-radius: 16px;
         }
 
         .project-card {
-            background: var(--bg);
             padding: 48px 44px;
-            position: relative;
-            overflow: hidden;
-            transition: background .4s;
-            cursor: none;
         }
 
-        .project-card::before {
+        .domain-card {
+            padding: 40px 36px;
+        }
+
+        .wiki-card {
+            padding: 40px;
+            text-decoration: none;
+            display: block;
+        }
+
+        body.light-theme .project-card,
+        body.light-theme .domain-card,
+        body.light-theme .wiki-card {
+            background: rgba(0, 0, 0, 0.02);
+            box-shadow: 0 4px 32px rgba(0, 0, 0, 0.03);
+        }
+
+        .project-card::before,
+        .domain-card::before,
+        .wiki-card::before {
             content: '';
             position: absolute;
             inset: 0;
-            background: var(--brand-glow);
+            background: radial-gradient(800px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), var(--brand-glow), transparent 40%);
             opacity: 0;
             transition: opacity .4s;
+            z-index: 0;
+            pointer-events: none;
         }
 
-        .project-card:hover {
-            background: var(--bg2);
+        .project-card:hover,
+        .domain-card:hover,
+        .wiki-card:hover {
+            border-color: var(--brand);
+            transform: translateY(-4px);
         }
 
-        .project-card:hover::before {
+        .project-card:hover::before,
+        .domain-card:hover::before,
+        .wiki-card:hover::before {
             opacity: 1;
+        }
+
+        .project-card>*,
+        .domain-card>*,
+        .wiki-card>* {
+            position: relative;
+            z-index: 1;
         }
 
         .project-tag {
@@ -799,7 +859,7 @@
             font-family: var(--ff-display);
             font-size: 80px;
             font-weight: 300;
-            color: rgba(79, 70, 229, .04);
+            color: var(--brand-faint);
             line-height: 1;
             pointer-events: none;
             user-select: none;
@@ -889,7 +949,7 @@
 
         .philosophy-quote em {
             font-style: italic;
-            color: rgba(232, 232, 242, .45);
+            color: var(--text-faint);
         }
 
         .philosophy-body {
@@ -918,15 +978,9 @@
         .domains-row {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 1px;
-            background: var(--border);
-            border: 1px solid var(--border);
+            gap: 24px;
+            background: transparent;
             margin-bottom: 80px;
-        }
-
-        .domain-card {
-            background: var(--bg);
-            padding: 40px 36px;
         }
 
         .domain-icon {
@@ -1002,7 +1056,7 @@
 
         .cta-heading em {
             font-style: italic;
-            color: rgba(232, 232, 242, .4);
+            color: var(--text-faint);
         }
 
         .cta-sub {
@@ -1167,6 +1221,30 @@
         }
 
         /* ─── Responsive ───────────────────────────────────────────────────────────── */
+        @media (max-width: 1024px) {
+
+            #cursor,
+            #cursor-ring {
+                display: none !important;
+            }
+
+            html {
+                cursor: auto !important;
+            }
+
+            a,
+            button,
+            [role="button"],
+            .project-card,
+            .btn-primary,
+            .btn-ghost,
+            .theme-toggle-btn,
+            .hamburger-btn,
+            .mobile-link {
+                cursor: pointer !important;
+            }
+        }
+
         @media (max-width: 900px) {
             nav {
                 padding: 24px 24px;
@@ -1392,7 +1470,8 @@
     </section>
 
     <!-- ═══ ABOUT US ════════════════════════════════════════════════════════════════ -->
-    <section id="about" style="padding: 160px 0; background: var(--bg2); border-top: 1px solid var(--border);">
+    <section id="about"
+        style="padding: 160px 0; background: var(--bg2); border-top: 1px solid; border-image: linear-gradient(90deg, transparent, var(--border-hi), transparent) 1;">
         <div class="section-inner">
             <div class="section-label reveal">About Us</div>
             <h2 class="origin-heading reveal reveal-delay-1" style="max-width: 800px; margin-bottom: 40px;">
@@ -1552,7 +1631,8 @@
     </section>
 
     <!-- ═══ WIKI ═════════════════════════════════════════════════════════════════════ -->
-    <section id="wiki" style="padding: 160px 0; background: var(--bg); border-top: 1px solid var(--border);">
+    <section id="wiki"
+        style="padding: 160px 0; background: var(--bg); border-top: 1px solid; border-image: linear-gradient(90deg, transparent, var(--border-hi), transparent) 1;">
         <div class="section-inner">
             <div class="projects-header">
                 <div class="section-label reveal">Wiki & Docs</div>
@@ -1560,29 +1640,23 @@
                     Organizational knowledge, codified.
                 </h2>
             </div>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border);"
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;"
                 class="reveal reveal-delay-2">
-                <a href="#"
-                    style="background: var(--bg2); padding: 40px; text-decoration: none; display: block; transition: background 0.3s; cursor: none;"
-                    onmouseover="this.style.background='var(--bg)'" onmouseout="this.style.background='var(--bg2)'">
+                <a href="#" class="wiki-card">
                     <div class="project-tag">Guidelines</div>
                     <h3 style="font-family: var(--ff-ui); font-size: 20px; color: var(--text); margin-bottom: 12px;">
                         Design System Principles</h3>
                     <p class="origin-body" style="margin-top: 0; font-size: 15px;">The fundamental aesthetic and
                         ergonomic rules governing all eOzka interfaces.</p>
                 </a>
-                <a href="#"
-                    style="background: var(--bg2); padding: 40px; text-decoration: none; display: block; transition: background 0.3s; cursor: none;"
-                    onmouseover="this.style.background='var(--bg)'" onmouseout="this.style.background='var(--bg2)'">
+                <a href="#" class="wiki-card">
                     <div class="project-tag">Research</div>
                     <h3 style="font-family: var(--ff-ui); font-size: 20px; color: var(--text); margin-bottom: 12px;">
                         Cognitive Augmentation</h3>
                     <p class="origin-body" style="margin-top: 0; font-size: 15px;">Whitepaper on reducing cognitive load
                         through modular AI systems.</p>
                 </a>
-                <a href="#"
-                    style="background: var(--bg2); padding: 40px; text-decoration: none; display: block; transition: background 0.3s; cursor: none;"
-                    onmouseover="this.style.background='var(--bg)'" onmouseout="this.style.background='var(--bg2)'">
+                <a href="#" class="wiki-card">
                     <div class="project-tag">Engineering</div>
                     <h3 style="font-family: var(--ff-ui); font-size: 20px; color: var(--text); margin-bottom: 12px;">
                         Architecture Standards</h3>
@@ -1733,30 +1807,38 @@
 
         document.addEventListener('mousemove', e => {
             mx = e.clientX; my = e.clientY;
-            cursor.style.left = mx + 'px';
-            cursor.style.top = my + 'px';
+            if (cursor) cursor.style.transform = `translate3d(${mx}px, ${my}px, 0) translate3d(-50%, -50%, 0)`;
+
+            document.querySelectorAll('.project-card, .domain-card, .wiki-card').forEach(card => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
         });
 
         function animateCursor() {
             rx += (mx - rx) * .12;
             ry += (my - ry) * .12;
-            cursorRing.style.left = rx + 'px';
-            cursorRing.style.top = ry + 'px';
+            cursorRing.style.transform = `translate3d(${rx}px, ${ry}px, 0) translate3d(-50%, -50%, 0)`;
             requestAnimationFrame(animateCursor);
         }
         animateCursor();
 
-        document.querySelectorAll('a, button').forEach(el => {
+        document.querySelectorAll('a, button, .project-card').forEach(el => {
             el.addEventListener('mouseenter', () => {
-                cursor.style.transform = 'translate(-50%,-50%) scale(2)';
-                cursor.style.background = '#fff';
-                cursorRing.style.transform = 'translate(-50%,-50%) scale(1.5)';
+                cursor.style.width = '14px';
+                cursor.style.height = '14px';
+                cursorRing.style.width = '54px';
+                cursorRing.style.height = '54px';
                 cursorRing.style.opacity = '0.4';
             });
             el.addEventListener('mouseleave', () => {
-                cursor.style.transform = 'translate(-50%,-50%) scale(1)';
-                cursor.style.background = 'var(--brand)';
-                cursorRing.style.transform = 'translate(-50%,-50%) scale(1)';
+                cursor.style.width = '8px';
+                cursor.style.height = '8px';
+                cursorRing.style.width = '36px';
+                cursorRing.style.height = '36px';
                 cursorRing.style.opacity = '1';
             });
         });
@@ -1774,18 +1856,25 @@
 
         function initParticles() {
             const count = Math.min(Math.floor(W * H / 14000), 90);
+            const lightColorSet = ['236,72,153', '245,158,11', '16,185,129', '139,92,246']; // Pink, Amber, Emerald, Violet
+            const darkColorSet = ['56,189,248', '167,139,250', '244,114,182', '52,211,153']; // Cyan, Violet, Pink, Emerald
+
             particles = Array.from({ length: count }, () => ({
                 x: Math.random() * W,
                 y: Math.random() * H,
-                vx: (Math.random() - .5) * .25,
-                vy: (Math.random() - .5) * .25,
+                vx: (Math.random() - .5) * .6,
+                vy: (Math.random() - .5) * .6,
                 r: Math.random() * 1.5 + .5,
                 o: Math.random() * .5 + .2,
+                c_light: lightColorSet[Math.floor(Math.random() * lightColorSet.length)],
+                c_dark: darkColorSet[Math.floor(Math.random() * darkColorSet.length)]
             }));
         }
 
         function drawFrame() {
             ctx.clearRect(0, 0, W, H);
+
+            const isLight = document.body.classList.contains('light-theme');
 
             /* Connection lines */
             const maxDist = 140;
@@ -1796,8 +1885,9 @@
                     const d = Math.hypot(dx, dy);
                     if (d < maxDist) {
                         const alpha = (1 - d / maxDist) * .08;
+                        const c = isLight ? particles[i].c_light : particles[i].c_dark;
                         ctx.beginPath();
-                        ctx.strokeStyle = `rgba(79,70,229,${alpha})`;
+                        ctx.strokeStyle = `rgba(${c},${alpha})`;
                         ctx.lineWidth = .5;
                         ctx.moveTo(particles[i].x, particles[i].y);
                         ctx.lineTo(particles[j].x, particles[j].y);
@@ -1815,9 +1905,10 @@
                 if (p.y < 0) p.y = H;
                 if (p.y > H) p.y = 0;
 
+                const c = isLight ? p.c_light : p.c_dark;
                 ctx.beginPath();
                 ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(79,70,229,${p.o})`;
+                ctx.fillStyle = `rgba(${c},${p.o})`;
                 ctx.fill();
             }
 
@@ -1854,10 +1945,10 @@
         window.addEventListener('scroll', () => {
             const isLight = document.body.classList.contains('light-theme');
             if (window.scrollY > 80) {
-                nav.style.background = isLight ? 'rgba(250,250,250,.96)' : 'rgba(8,8,15,.96)';
-                nav.style.borderBottom = isLight ? '1px solid rgba(67,56,202,.1)' : '1px solid rgba(79,70,229,.1)';
+                nav.style.background = isLight ? 'rgba(254,252,232,.96)' : 'rgba(8,8,15,.96)';
+                nav.style.borderBottom = isLight ? '1px solid rgba(245,158,11,.25)' : '1px solid rgba(79,70,229,.1)';
             } else {
-                nav.style.background = isLight ? 'linear-gradient(to bottom, rgba(250,250,250,.7) 0%, transparent 100%)' : 'linear-gradient(to bottom, rgba(8,8,15,.7) 0%, transparent 100%)';
+                nav.style.background = isLight ? 'linear-gradient(to bottom, rgba(254,252,232,.9) 0%, transparent 100%)' : 'linear-gradient(to bottom, rgba(8,8,15,.7) 0%, transparent 100%)';
                 nav.style.borderBottom = '1px solid transparent';
             }
         }, { passive: true });

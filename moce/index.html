@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOCE — Technical Subsidiary</title>
+    <meta name="description"
+        content="MOCE is the technical subsidiary of eOzka, focused on engineering, AI augmentation, and sentient system building.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Syne:wght@400;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* ─── Shared Styles ────────────────────────────────────────────────────────── */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --brand: #4F46E5;
+            /* Indigo for Technical */
+            --brand-dim: #1E1B4B;
+            --brand-glow: rgba(79, 70, 229, 0.2);
+            --bg: #09090B;
+            --bg2: #18181B;
+            --text: #F4F4F5;
+            --text-muted: #A1A1AA;
+            --text-dim: #71717A;
+            --border: rgba(79, 70, 229, 0.2);
+            --border-hi: rgba(79, 70, 229, 0.4);
+            --ff-display: 'Cormorant Garamond', Georgia, serif;
+            --ff-ui: 'Syne', sans-serif;
+            --ff-mono: 'DM Mono', monospace;
+        }
+
+        body.light-theme {
+            --brand: #38BDF8;
+            /* Cyan for Light Tech */
+            --bg: #F8FAFC;
+            --bg2: #F1F5F9;
+            --text: #0F172A;
+            --text-muted: #475569;
+            --text-dim: #64748B;
+            --border: rgba(56, 189, 248, 0.2);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            cursor: none;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--ff-display);
+            font-size: 18px;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        #cursor {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background: #FFF;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate3d(-50%, -50%, 0);
+            transition: width .3s, height .3s;
+            mix-blend-mode: difference;
+        }
+
+        #cursor-ring {
+            position: fixed;
+            width: 36px;
+            height: 36px;
+            border: 1px solid #FFF;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate3d(-50%, -50%, 0);
+            transition: width .3s, height .3s, opacity .3s;
+            mix-blend-mode: difference;
+        }
+
+        #cosmos {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            opacity: .8;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            padding: 28px 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid transparent;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+        }
+
+        .nav-wordmark {
+            font-family: var(--ff-ui);
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: .12em;
+            color: var(--text);
+        }
+
+        .nav-wordmark span {
+            display: block;
+            font-size: 9px;
+            font-weight: 400;
+            color: var(--brand);
+            font-family: var(--ff-mono);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 36px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-family: var(--ff-mono);
+            font-size: 11px;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            text-decoration: none;
+            transition: color .3s;
+        }
+
+        .nav-cta {
+            font-family: var(--ff-mono);
+            font-size: 11px;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            color: var(--brand);
+            text-decoration: none;
+            border: 1px solid var(--border-hi);
+            padding: 9px 20px;
+            border-radius: 3px;
+            transition: all .3s;
+        }
+
+        .nav-cta:hover {
+            background: var(--brand-glow);
+            color: var(--text);
+        }
+
+        section {
+            position: relative;
+            z-index: 2;
+            padding: 120px 0;
+        }
+
+        .section-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 48px;
+        }
+
+        .section-label {
+            font-family: var(--ff-mono);
+            font-size: 10px;
+            letter-spacing: .3em;
+            text-transform: uppercase;
+            color: var(--brand);
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-label::before {
+            content: '';
+            width: 24px;
+            height: 1px;
+            background: var(--brand);
+        }
+
+        #hero {
+            height: 60svh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-family: var(--ff-display);
+            font-size: clamp(40px, 6vw, 80px);
+            font-weight: 300;
+            line-height: 1;
+            margin-bottom: 24px;
+        }
+
+        .hero-sub {
+            color: var(--text-dim);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.015);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 48px 44px;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            transition: all .4s;
+        }
+
+        .project-card:hover {
+            border-color: var(--brand);
+            transform: translateY(-4px);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(800px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), var(--brand-glow), transparent 40%);
+            opacity: 0;
+            transition: opacity .4s;
+            pointer-events: none;
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        .project-name {
+            font-family: var(--ff-ui);
+            font-size: 24px;
+            font-weight: 700;
+            color: #FFF;
+            margin-bottom: 12px;
+        }
+
+        .project-desc {
+            color: var(--text-dim);
+            font-size: 15px;
+            margin-bottom: 24px;
+        }
+
+        .project-link {
+            font-family: var(--ff-mono);
+            font-size: 10px;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            color: var(--brand);
+        }
+
+        #scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: var(--brand);
+            z-index: 10000;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all .8s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 900px) {
+            .nav-links {
+                display: none;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="scroll-progress"></div>
+    <div id="cursor"></div>
+    <div id="cursor-ring"></div>
+    <canvas id="cosmos"></canvas>
+
+    <nav>
+        <div style="display: flex; align-items: center; gap: 20px;">
+            <a href="../index.html" class="nav-cta">← Return to eOzka</a>
+            <a href="#" class="nav-logo">
+                <div class="nav-wordmark">MOCE<span>Technical Subsidiary</span></div>
+            </a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#wiki">Wiki</a></li>
+        </ul>
+        <button class="theme-toggle-btn" style="background:none; border:none; color:var(--text); cursor:none;">
+            <svg class="sun-icon" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2"
+                fill="none">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <svg class="moon-icon" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2"
+                fill="none">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+        </button>
+    </nav>
+
+    <section id="hero">
+        <h1 class="hero-title reveal">The Technical Domain.</h1>
+        <p class="hero-sub reveal">Shipping logic, building augmentation systems, and exploring the boundaries of
+            sentient engineering.</p>
+    </section>
+
+    <section id="projects">
+        <div class="section-inner">
+            <div class="section-label reveal">Projects</div>
+            <div class="projects-grid">
+                <a href="#" class="project-card reveal">
+                    <div class="project-name">Nexus AI</div>
+                    <p class="project-desc">A distributed intelligence layer for real-time sentient grounding.</p>
+                    <div class="project-link">Source →</div>
+                </a>
+                <a href="#" class="project-card reveal">
+                    <div class="project-name">Kendra</div>
+                    <p class="project-desc">Automated agricultural monitoring and logic optimization.</p>
+                    <div class="project-link">Source →</div>
+                </a>
+                <a href="#" class="project-card reveal">
+                    <div class="project-name">entab-D</div>
+                    <p class="project-desc">Hyper-personal ledger systems for cognitive data retention.</p>
+                    <div class="project-link">Source →</div>
+                </a>
+                <a href="#" class="project-card reveal">
+                    <div class="project-name">Stress-Calc</div>
+                    <p class="project-desc">Real-time physiological feedback analysis engine.</p>
+                    <div class="project-link">Source →</div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="wiki">
+        <div class="section-inner">
+            <div class="section-label reveal">Internal Wiki</div>
+            <p class="hero-sub reveal" style="text-align: left; margin-bottom: 40px;">Documentation, engineering
+                patterns, and the MOCE technical handbook.</p>
+            <div class="projects-grid">
+                <a href="#" class="project-card reveal" style="padding: 32px;">
+                    <div class="project-name" style="font-size: 18px;">Engineering Standards</div>
+                    <div class="project-link">Read Doc</div>
+                </a>
+                <a href="#" class="project-card reveal" style="padding: 32px;">
+                    <div class="project-name" style="font-size: 18px;">Ecosystem Architecture</div>
+                    <div class="project-link">Read Doc</div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const cursor = document.getElementById('cursor');
+        const cursorRing = document.getElementById('cursor-ring');
+        let mx = -100, my = -100, rx = -100, ry = -100;
+        document.addEventListener('mousemove', e => {
+            mx = e.clientX; my = e.clientY;
+            if (cursor) cursor.style.transform = `translate3d(${mx}px, ${my}px, 0) translate3d(-50%, -50%, 0)`;
+            document.querySelectorAll('.project-card').forEach(card => {
+                const rect = card.getBoundingClientRect();
+                card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+                card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+            });
+        });
+        function animateCursor() {
+            rx += (mx - rx) * .12; ry += (my - ry) * .12;
+            if (cursorRing) cursorRing.style.transform = `translate3d(${rx}px, ${ry}px, 0) translate3d(-50%, -50%, 0)`;
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        const themeToggle = document.querySelector('.theme-toggle-btn');
+        const updateTheme = () => {
+            const isLight = localStorage.getItem('eOzka-theme') === 'light';
+            document.body.classList.toggle('light-theme', isLight);
+        };
+        themeToggle.addEventListener('click', () => {
+            localStorage.setItem('eOzka-theme', localStorage.getItem('eOzka-theme') === 'light' ? 'dark' : 'light');
+            updateTheme();
+        });
+        updateTheme();
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('scroll-progress').style.width = scrolled + '%';
+        });
+
+        const canvas = document.getElementById('cosmos');
+        const ctx = canvas.getContext('2d');
+        let W, H, particles;
+        function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; initParticles(); }
+        function initParticles() {
+            const count = Math.min(Math.floor(W * H / 12000), 80);
+            particles = Array.from({ length: count }, () => ({
+                x: Math.random() * W, y: Math.random() * H,
+                vx: (Math.random() - .5) * .3, vy: (Math.random() - .5) * .3,
+                r: Math.random() * 1.5 + .5, o: Math.random() * .4 + .1
+            }));
+        }
+        function drawFrame() {
+            ctx.clearRect(0, 0, W, H);
+            if (particles) {
+                for (const p of particles) {
+                    p.x += p.vx; p.y += p.vy;
+                    if (p.x < 0) p.x = W; if (p.x > W) p.x = 0;
+                    if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
+                    ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(79, 70, 229, ${p.o})`; ctx.fill();
+                }
+            }
+            requestAnimationFrame(drawFrame);
+        }
+        window.addEventListener('resize', resize);
+        resize(); drawFrame();
+    </script>
+</body>
+
+</html>

@@ -4,14 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MOCK Architecture</title>
+    <title>MOCK — Secondary Domain</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Syne:wght@400;600;700;800&display=swap"
         rel="stylesheet">
     <style>
-        * {
+        *,
+        *::before,
+        *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
@@ -21,31 +23,112 @@
             --brand: #A855F7;
             --brand-glow: rgba(168, 85, 247, 0.2);
             --bg: #09090B;
+            --bg2: #18181B;
             --text: #F4F4F5;
+            --text-muted: #A1A1AA;
             --text-dim: #71717A;
             --ff-display: 'Cormorant Garamond', Georgia, serif;
             --ff-ui: 'Syne', sans-serif;
             --ff-mono: 'DM Mono', monospace;
         }
 
+        body.light-theme {
+            --brand: #F59E0B;
+            --bg: #FFFBEB;
+            --bg2: #FEF3C7;
+            --text: #78350F;
+            --text-muted: #B45309;
+            --text-dim: #92400E;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            cursor: none;
+        }
+
         body {
             background: var(--bg);
             color: var(--text);
             font-family: var(--ff-ui);
+            min-height: 100svh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 100svh;
             text-align: center;
+            overflow: hidden;
+        }
+
+        #cursor {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background: #FFF;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate3d(-50%, -50%, 0);
+            transition: width .3s, height .3s;
+            mix-blend-mode: difference;
+        }
+
+        #cursor-ring {
+            position: fixed;
+            width: 36px;
+            height: 36px;
+            border: 1px solid #FFF;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate3d(-50%, -50%, 0);
+            transition: width .3s, height .3s, opacity .3s;
+            mix-blend-mode: difference;
+        }
+
+        #cosmos {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            opacity: 0.6;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            padding: 28px 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-cta {
+            font-family: var(--ff-mono);
+            font-size: 11px;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            color: var(--brand);
+            text-decoration: none;
+            border: 1px solid var(--border-hi);
+            padding: 9px 20px;
+            border-radius: 3px;
+            transition: all .3s;
+        }
+
+        .nav-cta:hover {
+            background: var(--brand-glow);
+            color: var(--text);
         }
 
         h1 {
             font-family: var(--ff-display);
             font-size: clamp(60px, 10vw, 120px);
             font-weight: 300;
-            color: #fff;
+            color: var(--text);
             margin-bottom: 12px;
+            z-index: 2;
+            position: relative;
         }
 
         p {
@@ -53,9 +136,11 @@
             font-family: var(--ff-mono);
             letter-spacing: 0.1em;
             margin-bottom: 40px;
+            z-index: 2;
+            position: relative;
         }
 
-        a {
+        .btn-return {
             font-family: var(--ff-mono);
             font-size: 11px;
             letter-spacing: .2em;
@@ -66,20 +151,124 @@
             padding: 14px 32px;
             border-radius: 3px;
             text-decoration: none;
-            transition: opacity .3s, transform .3s;
+            transition: all .3s;
+            z-index: 2;
+            position: relative;
         }
 
-        a:hover {
-            opacity: 0.8;
+        .btn-return:hover {
+            opacity: 0.85;
             transform: translateY(-2px);
+        }
+
+        @media (max-width: 900px) {
+
+            #cursor,
+            #cursor-ring {
+                display: none;
+            }
+
+            html {
+                cursor: auto;
+            }
         }
     </style>
 </head>
 
 <body>
-    <h1>MOCK</h1>
-    <p>Awaiting structural definition.</p>
-    <a href="../index.html">← Return to MOCE</a>
+    <div id="cursor"></div>
+    <div id="cursor-ring"></div>
+    <canvas id="cosmos"></canvas>
+
+    <nav>
+        <a href="../index.html" class="nav-cta">← Return to eOzka</a>
+        <button class="theme-toggle-btn" style="background:none; border:none; color:var(--text); cursor:none;">
+            <svg class="sun-icon" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2"
+                fill="none">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <svg class="moon-icon" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2"
+                fill="none">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+        </button>
+    </nav>
+
+    <h1 class="reveal">MOCK</h1>
+    <p class="reveal">Structural definition pending for the secondary domain.</p>
+    <a href="../index.html" class="btn-return reveal">Return to Parent Hub</a>
+
+    <script>
+        const cursor = document.getElementById('cursor');
+        const cursorRing = document.getElementById('cursor-ring');
+        let mx = -100, my = -100, rx = -100, ry = -100;
+        document.addEventListener('mousemove', e => {
+            mx = e.clientX; my = e.clientY;
+            if (cursor) cursor.style.transform = `translate3d(${mx}px, ${my}px, 0) translate3d(-50%, -50%, 0)`;
+        });
+        function animateCursor() {
+            rx += (mx - rx) * .12; ry += (my - ry) * .12;
+            if (cursorRing) cursorRing.style.transform = `translate3d(${rx}px, ${ry}px, 0) translate3d(-50%, -50%, 0)`;
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        const themeToggle = document.querySelector('.theme-toggle-btn');
+        const updateTheme = () => {
+            const isLight = localStorage.getItem('eOzka-theme') === 'light';
+            document.body.classList.toggle('light-theme', isLight);
+        };
+        themeToggle.addEventListener('click', () => {
+            localStorage.setItem('eOzka-theme', localStorage.getItem('eOzka-theme') === 'light' ? 'dark' : 'light');
+            updateTheme();
+        });
+        updateTheme();
+
+        const canvas = document.getElementById('cosmos');
+        const ctx = canvas.getContext('2d');
+        let W, H, particles;
+        function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; initParticles(); }
+        function initParticles() {
+            const count = Math.min(Math.floor(W * H / 12000), 50);
+            particles = Array.from({ length: count }, () => ({
+                x: Math.random() * W, y: Math.random() * H,
+                vx: (Math.random() - .5) * .2, vy: (Math.random() - .5) * .2,
+                r: Math.random() * 1.5 + .5, o: Math.random() * .4 + .1
+            }));
+        }
+        function drawFrame() {
+            ctx.clearRect(0, 0, W, H);
+            if (particles) {
+                for (const p of particles) {
+                    p.x += p.vx; p.y += p.vy;
+                    if (p.x < 0) p.x = W; if (p.x > W) p.x = 0;
+                    if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
+                    ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(168, 85, 247, ${p.o})`; ctx.fill();
+                }
+            }
+            requestAnimationFrame(drawFrame);
+        }
+        window.addEventListener('resize', resize);
+        resize(); drawFrame();
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.style.opacity = 1; });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => {
+            el.style.opacity = 0;
+            el.style.transition = 'opacity 1s ease';
+            observer.observe(el);
+        });
+    </script>
 </body>
 
 </html>

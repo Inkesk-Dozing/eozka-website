@@ -25,38 +25,52 @@
         }
 
         :root {
-            --brand: #EAB308;
-            --brand-dim: #854D0E;
-            --brand-glow: rgba(234, 179, 8, 0.2);
+            /* Sovereign Purple Primary */
+            --brand: #A855F7;
+            --brand-dim: #7E22CE;
+            --brand-glow: rgba(168, 85, 247, 0.2);
+            --brand-faint: rgba(168, 85, 247, 0.2);
+
+            /* Royal Gold Secondary */
+            --accent-gold: #EAB308;
+            --accent-gold-dim: #CA8A04;
+
+            /* Luxe Obsidian Foundation */
             --bg: #000000;
             --bg2: #050505;
             --bg3: #111111;
             --text: #F8FAFC;
             --text-muted: #E2E8F0;
             --text-dim: #CBD5E1;
-            --border: rgba(234, 179, 8, 0.15);
-            --border-hi: rgba(234, 179, 8, 0.3);
-            --text-faint: rgba(248, 250, 252, 0.1);
-            --brand-faint: rgba(234, 179, 8, 0.2);
+
+            /* Grey Architectural Layout */
+            --border: #1E293B;
+            --border-hi: #334155;
+            --text-faint: #0F172A;
+
             --ff-display: 'Cormorant Garamond', Georgia, serif;
             --ff-ui: 'Syne', sans-serif;
             --ff-mono: 'DM Mono', monospace;
         }
 
         body.light-theme {
-            --brand: #713F12;
-            --brand-dim: #451A03;
-            --brand-glow: rgba(113, 63, 18, 0.1);
+            --brand: #9333EA;
+            --brand-dim: #7E22CE;
+            --brand-glow: rgba(147, 51, 234, 0.1);
+            --brand-faint: rgba(147, 51, 234, 0.08);
+
+            --accent-gold: #D97706;
+            --accent-gold-dim: #B45309;
+
             --bg: #F8FAF9;
             --bg2: #F1F5F9;
             --bg3: #E2E8F0;
             --text: #1E293B;
             --text-muted: #334155;
             --text-dim: #475569;
-            --border: rgba(30, 41, 59, 0.1);
-            --border-hi: rgba(30, 41, 59, 0.2);
+            --border: #E2E8F0;
+            --border-hi: #CBD5E1;
             --text-faint: rgba(30, 41, 59, 0.05);
-            --brand-faint: rgba(113, 63, 18, 0.08);
         }
 
         html {
@@ -311,15 +325,15 @@
 
         em {
             font-style: italic;
-            color: #000000;
-            background: var(--brand);
-            padding: 0 4px;
-            border-radius: 2px;
+            color: var(--accent-gold);
+            background: transparent;
+            padding: 0;
+            text-shadow: 0 0 12px rgba(234, 179, 8, 0.2);
         }
 
         .light-theme em {
-            color: #FFFFFF;
-            background: var(--brand);
+            color: var(--accent-gold);
+            text-shadow: none;
         }
 
         section {
@@ -380,15 +394,16 @@
 
         .hero-title em {
             font-style: italic;
-            color: #000000;
-            background: var(--brand);
-            padding: 0 8px;
-            border-radius: 4px;
-            text-shadow: none;
+            color: var(--accent-gold);
+            background: transparent;
+            padding: 0;
+            border-radius: 0;
+            text-shadow: 0 0 24px rgba(234, 179, 8, 0.3);
         }
 
         .light-theme .hero-title em {
-            color: #FFFFFF;
+            color: var(--accent-gold);
+            text-shadow: none;
         }
 
         .hero-sub {
@@ -416,7 +431,7 @@
             font-size: 11px;
             letter-spacing: .2em;
             text-transform: uppercase;
-            color: #000000;
+            color: #FFFFFF;
             background: var(--brand);
             border: none;
             padding: 14px 32px;
@@ -1785,9 +1800,9 @@
         const ctx = canvas.getContext('2d');
         let W, H, particles;
         const colors = [
+            '168, 85, 247',  // Sovereign Purple
             '234, 179, 8',   // Royal Gold
-            '133, 77, 14',   // Dim Gold
-            '226, 232, 240'  // Slated Silver
+            '192, 132, 252'  // Light Purple
         ];
         function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; initParticles(); }
         function initParticles() {

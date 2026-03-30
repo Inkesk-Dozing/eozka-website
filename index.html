@@ -25,28 +25,28 @@
         }
 
         :root {
-            /* Sovereign Purple Primary */
-            --brand: #A855F7;
-            --brand-dim: #7E22CE;
-            --brand-glow: rgba(168, 85, 247, 0.2);
-            --brand-faint: rgba(168, 85, 247, 0.2);
+            /* Original Indigo Baseline */
+            --brand: #4F46E5;
+            --brand-dim: #312E81;
+            --brand-glow: rgba(79, 70, 229, 0.18);
+            --brand-faint: rgba(79, 70, 229, 0.15);
 
-            /* Royal Gold Secondary */
+            /* Royal Gold Secondary (Preserved) */
             --accent-gold: #EAB308;
             --accent-gold-dim: #CA8A04;
 
-            /* Luxe Obsidian Foundation */
-            --bg: #000000;
-            --bg2: #050505;
-            --bg3: #111111;
-            --text: #F8FAFC;
-            --text-muted: #E2E8F0;
-            --text-dim: #CBD5E1;
+            /* Original Tinted Dark Foundation */
+            --bg: #08080F;
+            --bg2: #0D0D1A;
+            --bg3: #111124;
+            --text: #E8E8F2;
+            --text-muted: #5A5A7A;
+            --text-dim: #8888A8;
 
-            /* Grey Architectural Layout */
-            --border: #1E293B;
-            --border-hi: #334155;
-            --text-faint: #0F172A;
+            /* Original Indigo Borders */
+            --border: rgba(79, 70, 229, 0.15);
+            --border-hi: rgba(79, 70, 229, 0.4);
+            --text-faint: rgba(79, 70, 229, 0.08);
 
             --ff-display: 'Cormorant Garamond', Georgia, serif;
             --ff-ui: 'Syne', sans-serif;
@@ -54,10 +54,10 @@
         }
 
         body.light-theme {
-            --brand: #9333EA;
-            --brand-dim: #7E22CE;
-            --brand-glow: rgba(147, 51, 234, 0.1);
-            --brand-faint: rgba(147, 51, 234, 0.08);
+            --brand: #4338CA;
+            --brand-dim: #3730A3;
+            --brand-glow: rgba(67, 56, 202, 0.1);
+            --brand-faint: rgba(67, 56, 202, 0.08);
 
             --accent-gold: #D97706;
             --accent-gold-dim: #B45309;
@@ -66,11 +66,11 @@
             --bg2: #F1F5F9;
             --bg3: #E2E8F0;
             --text: #1E293B;
-            --text-muted: #334155;
-            --text-dim: #475569;
-            --border: #E2E8F0;
-            --border-hi: #CBD5E1;
-            --text-faint: rgba(30, 41, 59, 0.05);
+            --text-muted: #475569;
+            --text-dim: #64748B;
+            --border: rgba(67, 56, 202, 0.15);
+            --border-hi: rgba(67, 56, 202, 0.3);
+            --text-faint: rgba(67, 56, 202, 0.05);
         }
 
         html {
@@ -543,10 +543,11 @@
 
         .origin-heading em {
             font-style: italic;
-            color: #000000;
-            background: var(--brand);
-            padding: 0 8px;
-            border-radius: 4px;
+            color: var(--accent-gold);
+            background: transparent;
+            padding: 0;
+            border-radius: 0;
+            text-shadow: 0 0 16px rgba(234, 179, 8, 0.3);
         }
 
         .origin-body {
@@ -844,7 +845,8 @@
         .philosophy-ring:nth-child(2) {
             width: 200px;
             height: 200px;
-            border-color: rgba(34, 211, 238, .25);
+            border-color: rgba(234, 179, 8, .25);
+            /* Royal Gold */
             animation-direction: reverse;
             animation-duration: 22s;
         }
@@ -852,7 +854,8 @@
         .philosophy-ring:nth-child(3) {
             width: 340px;
             height: 340px;
-            border-color: rgba(34, 211, 238, .08);
+            border-color: rgba(168, 85, 247, .2);
+            /* Sovereign Purple */
             animation-duration: 45s;
         }
 
@@ -865,7 +868,7 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            box-shadow: 0 0 20px rgba(34, 211, 238, .6), 0 0 60px rgba(34, 211, 238, .2);
+            box-shadow: 0 0 20px rgba(168, 85, 247, .6), 0 0 60px rgba(234, 179, 8, .3);
             animation: nucleusPulse 4s ease-in-out infinite;
         }
 
@@ -878,8 +881,14 @@
             top: 0;
             left: 50%;
             transform: translate(-50%, -50%);
-            box-shadow: 0 0 8px rgba(34, 211, 238, .4);
+            box-shadow: 0 0 8px rgba(168, 85, 247, .6);
             border: 1px solid var(--brand);
+        }
+
+        .philosophy-ring:nth-child(2) .ring-node {
+            background: var(--accent-gold-dim);
+            box-shadow: 0 0 8px rgba(234, 179, 8, .6);
+            border: 1px solid var(--accent-gold);
         }
 
         .philosophy-ring:nth-child(1) .ring-node:nth-child(2) {
@@ -912,14 +921,16 @@
 
         .philosophy-quote em {
             font-style: italic;
-            color: #000000;
-            background: var(--brand);
-            padding: 0 4px;
-            border-radius: 2px;
+            color: var(--accent-gold);
+            background: transparent;
+            padding: 0;
+            border-radius: 0;
+            text-shadow: 0 0 16px rgba(234, 179, 8, 0.3);
         }
 
         .light-theme .philosophy-quote em {
-            color: #FFFFFF;
+            color: var(--accent-gold);
+            text-shadow: none;
         }
 
         .philosophy-body {
@@ -1164,12 +1175,12 @@
             0%,
             100% {
                 transform: translate(-50%, -50%) scale(1);
-                box-shadow: 0 0 20px rgba(34, 211, 238, .6), 0 0 60px rgba(34, 211, 238, .2);
+                box-shadow: 0 0 20px rgba(168, 85, 247, .8), 0 0 60px rgba(234, 179, 8, .3);
             }
 
             50% {
                 transform: translate(-50%, -50%) scale(1.2);
-                box-shadow: 0 0 35px rgba(34, 211, 238, .8), 0 0 80px rgba(34, 211, 238, .4);
+                box-shadow: 0 0 35px rgba(234, 179, 8, .9), 0 0 80px rgba(168, 85, 247, .6);
             }
         }
 
@@ -1210,7 +1221,8 @@
             }
 
             .philosophy-visual {
-                display: none;
+                transform: scale(0.65);
+                margin: 40px auto 0;
             }
         }
 
@@ -1374,7 +1386,7 @@
 
     <nav>
         <a href="#" class="nav-logo">
-            <div class="nav-mark">
+            <!-- <div class="nav-mark">
                 <svg viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="17" cy="17" r="14" stroke="currentColor" stroke-width="2.5" />
                     <circle cx="17" cy="3" r="3" fill="currentColor" />
@@ -1382,7 +1394,7 @@
                     <circle cx="17" cy="31" r="3" fill="currentColor" />
                     <circle cx="3" cy="17" r="3" fill="currentColor" />
                 </svg>
-            </div>
+            </div> -->
             <div class="nav-wordmark">
                 eOzka
                 <span>Parent Hub</span>

@@ -78,21 +78,21 @@
             pointer-events: none;
             z-index: 9999;
             transform: translate3d(-50%, -50%, 0);
-            transition: width .3s, height .3s;
-            mix-blend-mode: difference;
+            transition: width .3s, height .3s, opacity .3s;
+            opacity: 0;
         }
 
         #cursor-ring {
             position: fixed;
             width: 36px;
             height: 36px;
-            border: 1px solid #FFF;
+            border: 1px solid var(--brand);
             border-radius: 50%;
             pointer-events: none;
             z-index: 9998;
             transform: translate3d(-50%, -50%, 0);
-            transition: width .3s, height .3s, opacity .3s;
-            mix-blend-mode: difference;
+            transition: width .3s, height .3s, opacity .3s, border-color .3s;
+            opacity: 0;
         }
 
         #cosmos {
@@ -530,7 +530,7 @@
                 cursor.style.opacity = 1;
                 cursor.style.transform = `translate3d(${mx}px, ${my}px, 0) translate3d(-50%, -50%, 0)`;
             }
-            if (cursorRing) cursorRing.style.opacity = 0.6;
+            if (cursorRing) cursorRing.style.opacity = isHovering ? 0.9 : 0.6;
 
             document.querySelectorAll('.project-card').forEach(card => {
                 const rect = card.getBoundingClientRect();

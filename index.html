@@ -85,8 +85,8 @@
             pointer-events: none;
             z-index: 9999;
             transform: translate3d(-50%, -50%, 0);
-            transition: width .3s, height .3s, background .3s;
-            mix-blend-mode: difference;
+            transition: width .3s, height .3s, background .3s, opacity .3s;
+            opacity: 0;
             will-change: transform;
         }
 
@@ -96,7 +96,7 @@
             left: 0;
             width: 36px;
             height: 36px;
-            border: 1px solid #FFF;
+            border: 1px solid var(--brand);
             border-radius: 50%;
             pointer-events: none;
             z-index: 9998;
@@ -555,8 +555,11 @@
         #architecture {
             padding: 160px 0;
             background: var(--bg2);
+            background-image: radial-gradient(var(--border) 1px, transparent 1px);
+            background-size: 30px 30px;
             border-top: 1px solid var(--border);
             border-bottom: 1px solid var(--border);
+            position: relative;
         }
 
         .arch-header {
@@ -588,6 +591,7 @@
             display: flex;
             flex-direction: column;
             position: relative;
+            z-index: 2;
         }
 
         /* Constellation Connector Line */
@@ -622,6 +626,48 @@
 
         .light-theme .arch-layer:hover {
             background: radial-gradient(circle at var(--mouse-x) var(--mouse-y), rgba(99, 102, 241, 0.04), transparent 80%);
+        }
+
+        .layer-index {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--ff-mono);
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--brand);
+            width: 38px;
+            height: 38px;
+            background: var(--bg);
+            border: 1px solid var(--brand);
+            border-radius: 50%;
+            margin: 32px 21px;
+            box-shadow: 0 0 15px var(--brand-glow);
+            position: relative;
+            z-index: 2;
+        }
+
+        .layer-body {
+            padding: 32px 20px;
+        }
+
+        .layer-name {
+            font-family: var(--ff-ui);
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+
+        .layer-desc {
+            font-family: var(--ff-display);
+            font-size: 16px;
+            color: var(--text-dim);
+            font-weight: 300;
+            line-height: 1.6;
+            max-width: 560px;
         }
 
         .layer-status {
@@ -670,73 +716,40 @@
             }
         }
 
-        .layer-name {
-            font-family: var(--ff-ui);
-            font-size: 13px;
-            font-weight: 700;
-            letter-spacing: .1em;
+        .status-text {
+            font-family: var(--ff-mono);
+            font-size: 9px;
+            letter-spacing: .18em;
             text-transform: uppercase;
-            color: var(--text);
-            margin-bottom: 8px;
-        }
-
-        .layer-desc {
-            font-family: var(--ff-display);
-            font-size: 16px;
-            color: var(--text-dim);
-            font-weight: 300;
-            line-height: 1.6;
-            max-width: 560px;
-        }
-
-        .layer-status {
-            display: flex;
-            align-items: center;
-            padding: 24px 32px;
-            border-left: 1px solid var(--border);
-        }
-
-        .light-theme .arch-layers,
-        .light-theme .arch-layer-header,
-        .light-theme .arch-layer {
-            border-color: var(--border);
-        }
-
-        .status-dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            margin-right: 10px;
-            flex-shrink: 0;
-        }
-
-        .status-dot.active {
-            background: #10B981;
-            box-shadow: 0 0 8px rgba(16, 185, 129, .5);
-        }
-
-        .status-dot.building {
-            background: var(--brand);
-            box-shadow: 0 0 8px var(--brand-glow);
-        }
-
-        .status-dot.planned {
-            background: var(--text-muted);
+            color: var(--text-muted);
+            white-space: nowrap;
         }
 
         .footer {
             padding: 120px 0 60px;
-            background: var(--bg2);
-            border-top: 1px solid;
-            border-image: linear-gradient(90deg, transparent, var(--brand), transparent) 1;
+            background: #09090B !important;
+            color: #F4F4F5 !important;
+            border-top: 1px solid rgba(168, 85, 247, 0.2);
             position: relative;
             z-index: 10;
         }
 
-        .light-theme .footer {
-            background: #FFF;
-            border-top-color: var(--border);
-            box-shadow: 0 -10px 40px rgba(15, 23, 42, 0.02);
+        .footer .footer-label,
+        .footer .footer-vision,
+        .footer .stat-label,
+        .footer .footer-copy,
+        .footer .footer-legal a {
+            color: rgba(244, 244, 245, 0.6) !important;
+        }
+
+        .footer .footer-links a,
+        .footer .stat-value,
+        .footer .footer-logo {
+            color: #F4F4F5 !important;
+        }
+
+        .footer .footer-links a:hover {
+            color: var(--brand) !important;
         }
 
         #philosophy {
@@ -1580,7 +1593,7 @@
                 cursor.style.opacity = 1;
                 cursor.style.transform = `translate3d(${mx}px, ${my}px, 0) translate3d(-50%, -50%, 0)`;
             }
-            if (cursorRing) cursorRing.style.opacity = 0.6;
+            if (cursorRing) cursorRing.style.opacity = isHovering ? 0.9 : 0.6;
 
             document.querySelectorAll('.project-card').forEach(card => {
                 const rect = card.getBoundingClientRect();

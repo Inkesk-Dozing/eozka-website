@@ -20,30 +20,32 @@
         }
 
         :root {
-            --brand: #A855F7;
-            --brand-glow: rgba(168, 85, 247, 0.2);
-            --bg: #09090B;
-            --bg2: #18181B;
-            --text: #F4F4F5;
-            --text-muted: #A1A1AA;
-            --text-dim: #71717A;
+            --brand: #EAB308;
+            --brand-dim: #854D0E;
+            --brand-glow: rgba(234, 179, 8, 0.2);
+            --bg: #000000;
+            --bg2: #050505;
+            --text: #F8FAFC;
+            --text-muted: #E2E8F0;
+            --text-dim: #CBD5E1;
+            --border: rgba(234, 179, 8, 0.15);
+            --border-hi: rgba(234, 179, 8, 0.3);
             --ff-display: 'Cormorant Garamond', Georgia, serif;
             --ff-ui: 'Syne', sans-serif;
             --ff-mono: 'DM Mono', monospace;
         }
 
         body.light-theme {
-            --brand: #6366F1;
-            --brand-dim: #4F46E5;
-            --brand-glow: rgba(99, 102, 241, 0.12);
-            --bg: #FAFAF9;
-            --bg2: #F5F5F4;
-            --bg3: #E7E5E4;
-            --text: #0F172A;
-            --text-muted: #334155;
-            --text-dim: #475569;
-            --border: rgba(15, 23, 42, 0.12);
-            --border-hi: rgba(15, 23, 42, 0.2);
+            --brand: #854D0E;
+            --brand-dim: #713F12;
+            --brand-glow: rgba(133, 77, 14, 0.1);
+            --bg: #F8FAF9;
+            --bg2: #F1F5F9;
+            --text: #334155;
+            --text-muted: #475569;
+            --text-dim: #64748B;
+            --border: rgba(51, 65, 85, 0.1);
+            --border-hi: rgba(51, 65, 85, 0.2);
         }
 
         html {
@@ -64,21 +66,39 @@
             overflow: hidden;
         }
 
+        em {
+            font-style: italic;
+            color: #000000;
+            background: var(--brand);
+            padding: 0 4px;
+            border-radius: 2px;
+        }
+
+        .light-theme em {
+            color: #FFFFFF;
+            background: var(--brand);
+        }
+
         #cursor {
             position: fixed;
+            top: 0;
+            left: 0;
             width: 8px;
             height: 8px;
-            background: #FFF;
+            background: var(--brand);
             border-radius: 50%;
             pointer-events: none;
             z-index: 9999;
             transform: translate3d(-50%, -50%, 0);
-            transition: width .3s, height .3s, opacity .3s;
+            transition: width .3s, height .3s, opacity .3s, background-color .3s;
             opacity: 0;
+            will-change: transform;
         }
 
         #cursor-ring {
             position: fixed;
+            top: 0;
+            left: 0;
             width: 36px;
             height: 36px;
             border: 1px solid var(--brand);
@@ -86,7 +106,8 @@
             pointer-events: none;
             z-index: 9998;
             transform: translate3d(-50%, -50%, 0);
-            transition: width .3s, height .3s, opacity .3s, border-color .3s;
+            transition: width .3s, height .3s, opacity .3s, border-color .3s, background-color .3s;
+            will-change: transform;
             opacity: 0;
         }
 
@@ -122,8 +143,9 @@
         }
 
         .nav-cta:hover {
-            background: var(--brand-glow);
-            color: var(--text);
+            background: var(--brand);
+            color: #000000;
+            box-shadow: 0 0 20px var(--brand-glow);
         }
 
         h1 {
@@ -131,9 +153,10 @@
             font-size: clamp(60px, 10vw, 120px);
             font-weight: 300;
             color: var(--text);
-            margin-bottom: 12px;
+            margin-bottom: 24px;
             z-index: 2;
             position: relative;
+            letter-spacing: -.02em;
         }
 
         p {
@@ -150,7 +173,7 @@
             font-size: 11px;
             letter-spacing: .2em;
             text-transform: uppercase;
-            color: #FFFFFF;
+            color: #000000;
             background: var(--brand);
             border: none;
             padding: 14px 32px;
@@ -159,11 +182,13 @@
             transition: all .3s;
             z-index: 2;
             position: relative;
+            display: inline-block;
         }
 
         .btn-return:hover {
-            opacity: 0.85;
+            opacity: 0.9;
             transform: translateY(-2px);
+            box-shadow: 0 0 24px var(--brand-glow);
         }
 
         @media (max-width: 900px) {
@@ -181,7 +206,7 @@
         /* ─── FOOTER ─────────────────────────────────────────────────────────────── */
         footer {
             padding: 80px 0 40px;
-            background: var(--bg);
+            background: #080808 !important;
             border-top: 1px solid var(--border);
             margin-top: 80px;
             width: 100%;
@@ -429,13 +454,19 @@
         const canvas = document.getElementById('cosmos');
         const ctx = canvas.getContext('2d');
         let W, H, particles;
+        const colors = [
+            '234, 179, 8',   // Royal Gold
+            '133, 77, 14',   // Dim Gold
+            '226, 232, 240'  // Slated Silver
+        ];
         function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; initParticles(); }
         function initParticles() {
             const count = Math.min(Math.floor(W * H / 12000), 50);
             particles = Array.from({ length: count }, () => ({
                 x: Math.random() * W, y: Math.random() * H,
                 vx: (Math.random() - .5) * .2, vy: (Math.random() - .5) * .2,
-                r: Math.random() * 1.5 + .5, o: Math.random() * .4 + .1
+                r: Math.random() * 1.5 + .5, o: Math.random() * .4 + .1,
+                c: colors[Math.floor(Math.random() * colors.length)]
             }));
         }
         function drawFrame() {
@@ -446,7 +477,7 @@
                     if (p.x < 0) p.x = W; if (p.x > W) p.x = 0;
                     if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
                     ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-                    ctx.fillStyle = `rgba(168, 85, 247, ${p.o})`; ctx.fill();
+                    ctx.fillStyle = `rgba(${p.c}, ${p.o})`; ctx.fill();
                 }
             }
             requestAnimationFrame(drawFrame);

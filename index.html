@@ -25,38 +25,38 @@
         }
 
         :root {
-            --brand: #A855F7;
-            --brand-dim: #3B0764;
-            --brand-glow: rgba(168, 85, 247, 0.2);
-            --bg: #09090B;
-            --bg2: #18181B;
-            --bg3: #27272A;
-            --text: #F4F4F5;
-            --text-muted: #A1A1AA;
-            --text-dim: #71717A;
-            --border: rgba(168, 85, 247, 0.2);
-            --border-hi: rgba(168, 85, 247, 0.4);
-            --text-faint: rgba(244, 244, 245, 0.1);
-            --brand-faint: rgba(168, 85, 247, 0.1);
+            --brand: #EAB308;
+            --brand-dim: #854D0E;
+            --brand-glow: rgba(234, 179, 8, 0.2);
+            --bg: #000000;
+            --bg2: #050505;
+            --bg3: #111111;
+            --text: #F8FAFC;
+            --text-muted: #E2E8F0;
+            --text-dim: #CBD5E1;
+            --border: rgba(234, 179, 8, 0.15);
+            --border-hi: rgba(234, 179, 8, 0.3);
+            --text-faint: rgba(248, 250, 252, 0.1);
+            --brand-faint: rgba(234, 179, 8, 0.2);
             --ff-display: 'Cormorant Garamond', Georgia, serif;
             --ff-ui: 'Syne', sans-serif;
             --ff-mono: 'DM Mono', monospace;
         }
 
         body.light-theme {
-            --brand: #6366F1;
-            --brand-dim: #4F46E5;
-            --brand-glow: rgba(99, 102, 241, 0.12);
-            --bg: #FAFAF9;
-            --bg2: #F5F5F4;
-            --bg3: #E7E5E4;
-            --text: #0F172A;
+            --brand: #713F12;
+            --brand-dim: #451A03;
+            --brand-glow: rgba(113, 63, 18, 0.1);
+            --bg: #F8FAF9;
+            --bg2: #F1F5F9;
+            --bg3: #E2E8F0;
+            --text: #1E293B;
             --text-muted: #334155;
             --text-dim: #475569;
-            --border: rgba(15, 23, 42, 0.12);
-            --border-hi: rgba(15, 23, 42, 0.2);
-            --text-faint: rgba(15, 23, 42, 0.1);
-            --brand-faint: rgba(99, 102, 241, 0.08);
+            --border: rgba(30, 41, 59, 0.1);
+            --border-hi: rgba(30, 41, 59, 0.2);
+            --text-faint: rgba(30, 41, 59, 0.05);
+            --brand-faint: rgba(113, 63, 18, 0.08);
         }
 
         html {
@@ -304,8 +304,22 @@
         }
 
         .nav-cta:hover {
-            background: var(--brand-glow);
-            color: var(--text);
+            background: var(--brand);
+            color: #000000;
+            box-shadow: 0 0 20px var(--brand-glow);
+        }
+
+        em {
+            font-style: italic;
+            color: #000000;
+            background: var(--brand);
+            padding: 0 4px;
+            border-radius: 2px;
+        }
+
+        .light-theme em {
+            color: #FFFFFF;
+            background: var(--brand);
         }
 
         section {
@@ -366,7 +380,15 @@
 
         .hero-title em {
             font-style: italic;
-            color: var(--text-faint);
+            color: #000000;
+            background: var(--brand);
+            padding: 0 8px;
+            border-radius: 4px;
+            text-shadow: none;
+        }
+
+        .light-theme .hero-title em {
+            color: #FFFFFF;
         }
 
         .hero-sub {
@@ -377,8 +399,8 @@
             max-width: 560px;
             margin: 32px auto 0;
             line-height: 1.6;
-            opacity: 0;
-            animation: fadeUp .8s .9s ease forwards;
+            min-height: 72px;
+            /* Prevent layout shift while typing */
         }
 
         .hero-actions {
@@ -394,7 +416,7 @@
             font-size: 11px;
             letter-spacing: .2em;
             text-transform: uppercase;
-            color: #FFFFFF;
+            color: #000000;
             background: var(--brand);
             border: none;
             padding: 14px 32px;
@@ -443,7 +465,7 @@
         .scroll-line {
             width: 1px;
             height: 60px;
-            background: linear-gradient(to bottom, #EC4899, #38BDF8, transparent);
+            background: linear-gradient(to bottom, var(--brand), var(--brand-dim), transparent);
             margin: 0 auto;
             animation: scrollPulse 2.5s ease-in-out infinite;
         }
@@ -506,7 +528,10 @@
 
         .origin-heading em {
             font-style: italic;
-            color: var(--brand);
+            color: #000000;
+            background: var(--brand);
+            padding: 0 8px;
+            border-radius: 4px;
         }
 
         .origin-body {
@@ -554,9 +579,11 @@
 
         #architecture {
             padding: 160px 0;
-            background: var(--bg2);
-            background-image: radial-gradient(var(--border) 1px, transparent 1px);
-            background-size: 30px 30px;
+            background: var(--bg);
+            background-image:
+                linear-gradient(var(--border) 1px, transparent 1px),
+                linear-gradient(90deg, var(--border) 1px, transparent 1px);
+            background-size: 40px 40px;
             border-top: 1px solid var(--border);
             border-bottom: 1px solid var(--border);
             position: relative;
@@ -621,7 +648,7 @@
         }
 
         .arch-layer:hover {
-            background: radial-gradient(circle at var(--mouse-x) var(--mouse-y), rgba(168, 85, 247, 0.05), transparent 80%);
+            background: radial-gradient(circle at var(--mouse-x) var(--mouse-y), var(--brand-glow), transparent 80%);
         }
 
         .light-theme .arch-layer:hover {
@@ -727,9 +754,9 @@
 
         .footer {
             padding: 120px 0 60px;
-            background: #09090B !important;
-            color: #F4F4F5 !important;
-            border-top: 1px solid rgba(168, 85, 247, 0.2);
+            background: #080808 !important;
+            color: var(--text) !important;
+            border-top: 1px solid var(--border);
             position: relative;
             z-index: 10;
         }
@@ -739,26 +766,26 @@
         .footer .stat-label,
         .footer .footer-copy,
         .footer .footer-legal a {
-            color: rgba(244, 244, 245, 0.6) !important;
+            color: rgba(255, 255, 255, 0.6) !important;
         }
 
         .footer .footer-links a,
         .footer .stat-value,
         .footer .footer-logo {
-            color: #F4F4F5 !important;
+            color: #FFFFFF !important;
         }
 
         .footer .footer-links a:hover {
-            color: var(--brand) !important;
+            color: var(--brand-dim) !important;
         }
 
         #philosophy {
             padding: 160px 0;
-            background: var(--bg2);
+            background: #050505;
             border-top: 1px solid var(--border);
             border-bottom: 1px solid var(--border);
             overflow: hidden;
-            perspective: 1000px;
+            perspective: 2000px;
         }
 
         .philosophy-inner {
@@ -774,6 +801,20 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            transform-style: preserve-3d;
+            animation: nexusFloat 12s ease-in-out infinite;
+        }
+
+        @keyframes nexusFloat {
+
+            0%,
+            100% {
+                transform: translateY(0) rotateX(15deg) rotateY(-10deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotateX(25deg) rotateY(10deg);
+            }
         }
 
         .philosophy-ring {
@@ -788,7 +829,7 @@
         .philosophy-ring:nth-child(2) {
             width: 200px;
             height: 200px;
-            border-color: rgba(79, 70, 229, .25);
+            border-color: rgba(34, 211, 238, .25);
             animation-direction: reverse;
             animation-duration: 22s;
         }
@@ -796,7 +837,7 @@
         .philosophy-ring:nth-child(3) {
             width: 340px;
             height: 340px;
-            border-color: rgba(79, 70, 229, .08);
+            border-color: rgba(34, 211, 238, .08);
             animation-duration: 45s;
         }
 
@@ -809,7 +850,7 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            box-shadow: 0 0 20px rgba(79, 70, 229, .6), 0 0 60px rgba(79, 70, 229, .2);
+            box-shadow: 0 0 20px rgba(34, 211, 238, .6), 0 0 60px rgba(34, 211, 238, .2);
             animation: nucleusPulse 4s ease-in-out infinite;
         }
 
@@ -822,7 +863,7 @@
             top: 0;
             left: 50%;
             transform: translate(-50%, -50%);
-            box-shadow: 0 0 8px rgba(79, 70, 229, .4);
+            box-shadow: 0 0 8px rgba(34, 211, 238, .4);
             border: 1px solid var(--brand);
         }
 
@@ -856,7 +897,14 @@
 
         .philosophy-quote em {
             font-style: italic;
-            color: var(--text-faint);
+            color: #000000;
+            background: var(--brand);
+            padding: 0 4px;
+            border-radius: 2px;
+        }
+
+        .light-theme .philosophy-quote em {
+            color: #FFFFFF;
         }
 
         .philosophy-body {
@@ -980,7 +1028,7 @@
             left: 0;
             width: 0%;
             height: 3px;
-            background: linear-gradient(90deg, var(--brand), #EC4899);
+            background: linear-gradient(90deg, var(--brand), var(--brand-dim));
             z-index: 10000;
             box-shadow: 0 1px 12px var(--brand-glow);
             pointer-events: none;
@@ -1101,12 +1149,12 @@
             0%,
             100% {
                 transform: translate(-50%, -50%) scale(1);
-                box-shadow: 0 0 20px rgba(79, 70, 229, .6), 0 0 60px rgba(79, 70, 229, .2);
+                box-shadow: 0 0 20px rgba(34, 211, 238, .6), 0 0 60px rgba(34, 211, 238, .2);
             }
 
             50% {
                 transform: translate(-50%, -50%) scale(1.2);
-                box-shadow: 0 0 35px rgba(79, 70, 229, .8), 0 0 80px rgba(79, 70, 229, .4);
+                box-shadow: 0 0 35px rgba(34, 211, 238, .8), 0 0 80px rgba(34, 211, 238, .4);
             }
         }
 
@@ -1313,11 +1361,11 @@
         <a href="#" class="nav-logo">
             <div class="nav-mark">
                 <svg viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="17" cy="17" r="14" stroke="#A855F7" stroke-width="2.5" />
-                    <circle cx="17" cy="3" r="3" fill="#A855F7" />
-                    <circle cx="31" cy="17" r="3" fill="#A855F7" />
-                    <circle cx="17" cy="31" r="3" fill="#A855F7" />
-                    <circle cx="3" cy="17" r="3" fill="#A855F7" />
+                    <circle cx="17" cy="17" r="14" stroke="currentColor" stroke-width="2.5" />
+                    <circle cx="17" cy="3" r="3" fill="currentColor" />
+                    <circle cx="31" cy="17" r="3" fill="currentColor" />
+                    <circle cx="17" cy="31" r="3" fill="currentColor" />
+                    <circle cx="3" cy="17" r="3" fill="currentColor" />
                 </svg>
             </div>
             <div class="nav-wordmark">
@@ -1376,7 +1424,8 @@
     <section id="hero">
         <div class="hero-eyebrow">eOzka — Parent Infrastructure</div>
         <h1 class="hero-title">Built by students.<br><em>Built to outlast them.</em></h1>
-        <p class="hero-sub">eOzka is an evolving technology organisation — part holding company, part idea engine, part
+        <p class="hero-sub type-reveal">eOzka is an evolving technology organisation — part holding company, part idea
+            engine, part
             proof that college rooms can produce things that last.</p>
         <div class="hero-actions">
             <a href="#subsidiaries" class="btn-primary">Explore Subsidiaries</a>
@@ -1419,18 +1468,18 @@
         style="padding: 160px 0; background: var(--bg2); border-top: 1px solid; border-image: linear-gradient(90deg, transparent, var(--border-hi), transparent) 1;">
         <div class="section-inner">
             <div class="section-label reveal">About Us</div>
-            <h2 class="origin-heading reveal reveal-delay-1" style="max-width: 800px; margin-bottom: 40px;">We are a
+            <h2 class="origin-heading reveal reveal-delay-1" style="max-width: 800px; margin-bottom: 80px;">We are a
                 collective dedicated to <br><em>augmenting sentient</em> potential.</h2>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px;"
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 60px; position: relative; z-index: 1;"
                 class="reveal reveal-delay-2">
                 <div>
-                    <h3 style="font-family: var(--ff-ui); font-size: 20px; color: var(--text); margin-bottom: 16px;">The
+                    <h3 style="font-family: var(--ff-ui); font-size: 24px; color: var(--text); margin-bottom: 20px;">The
                         Mission</h3>
                     <p class="origin-body" style="margin-top: 0;">We develop cognitive infrastructure and sentient
                         systems that bridge the gap between raw thought and executed production.</p>
                 </div>
                 <div>
-                    <h3 style="font-family: var(--ff-ui); font-size: 20px; color: var(--text); margin-bottom: 16px;">The
+                    <h3 style="font-family: var(--ff-ui); font-size: 24px; color: var(--text); margin-bottom: 20px;">The
                         Philosophy</h3>
                     <p class="origin-body" style="margin-top: 0;">Built by students, built to outlast them. We believe
                         that technology should empower the individual, not replace them.</p>
@@ -1503,7 +1552,7 @@
                     <div class="philosophy-dot"></div>
                 </div>
                 <div class="reveal reveal-delay-2">
-                    <div class="section-label">Philosophy</div>
+                    <div class="section-label">The Sentient Nexus</div>
                     <h2 class="philosophy-quote">The technology company is the <em>starting point</em>. It is not the
                         boundary.</h2>
                     <p class="philosophy-body">We do not build for the sake of construction. We build to solve for the
@@ -1663,16 +1712,6 @@
                 layer.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
             });
 
-            // Nexus Visual Tilt
-            const nexus = document.getElementById('nexus-visual');
-            if (nexus) {
-                const rect = nexus.getBoundingClientRect();
-                const centerX = rect.left + rect.width / 2;
-                const centerY = rect.top + rect.height / 2;
-                const tiltX = (e.clientY - centerY) * 0.05;
-                const tiltY = (e.clientX - centerX) * -0.05;
-                nexus.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
-            }
         });
 
         // Typing Effect & Scroll Parallax
@@ -1722,17 +1761,42 @@
         }, { threshold: 0.1 });
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
+        // Typing Effect for subtitle
+        const pDesc = document.querySelector('.type-reveal');
+        if (pDesc) {
+            const originalHTML = pDesc.innerHTML;
+            const text = pDesc.innerText;
+            pDesc.innerText = '';
+            let i = 0;
+            const type = () => {
+                if (i < text.length) {
+                    pDesc.innerText += text.charAt(i);
+                    i++;
+                    setTimeout(type, 35);
+                } else {
+                    pDesc.innerHTML = originalHTML;
+                }
+            };
+            setTimeout(type, 1800); // Start after hero title fades in
+        }
+
         // Cosmos Particles
         const canvas = document.getElementById('cosmos');
         const ctx = canvas.getContext('2d');
         let W, H, particles;
+        const colors = [
+            '234, 179, 8',   // Royal Gold
+            '133, 77, 14',   // Dim Gold
+            '226, 232, 240'  // Slated Silver
+        ];
         function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; initParticles(); }
         function initParticles() {
             const count = Math.min(Math.floor(W * H / 12000), 100);
             particles = Array.from({ length: count }, () => ({
                 x: Math.random() * W, y: Math.random() * H,
                 vx: (Math.random() - .5) * .4, vy: (Math.random() - .5) * .4,
-                r: Math.random() * 1.5 + .5, o: Math.random() * .5 + .2
+                r: Math.random() * 1.5 + .5, o: Math.random() * .5 + .2,
+                c: colors[Math.floor(Math.random() * colors.length)]
             }));
         }
         function drawFrame() {
@@ -1743,7 +1807,7 @@
                 if (p.x < 0) p.x = W; if (p.x > W) p.x = 0;
                 if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
                 ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(168, 85, 247, ${p.o})`; ctx.fill();
+                ctx.fillStyle = `rgba(${p.c}, ${p.o})`; ctx.fill();
             }
             requestAnimationFrame(drawFrame);
         }
